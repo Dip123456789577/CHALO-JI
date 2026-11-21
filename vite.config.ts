@@ -45,8 +45,12 @@ export default defineConfig(({ command }) => ({
     ...(command === "build"
       ? [
           nitro({
-            preset: "cloudflare-module",
-            cloudflare: { nodeCompat: true, deployConfig: true },
+            // Vercel sets VERCEL=1 during builds; its preset emits .vercel/output
+            // (Build Output API). Everywhere else we target Cloudflare Workers.
+            preset: process.env["VERCEL"] ? "vercel" : "cloudflare-module",
+            ...(process.env["VERCEL"]
+              ? {}
+              : { cloudflare: { nodeCompat: true, deployConfig: true } }),
           }),
         ]
       : []),
