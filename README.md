@@ -1,24 +1,32 @@
-# Screenshot Exact Match
+# AURELLE — Screenshot Exact Match
 
-Implement exactly the screenshot and nothing else
+Fine jewellery storefront: TanStack Start + React + Tailwind CSS + Zustand, backed by **Prisma ORM + Neon Serverless PostgreSQL**.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/caaaa4a2-1760-4ab2-9f65-bfc1dc3d2fcb).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Quick start
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
+cp .env.example .env   # fill DATABASE_URL / DIRECT_URL (Neon)
+npm run db:generate
+npm run db:migrate
+npm run db:seed
 npm run dev
 ```
+
+Without database credentials the storefront still runs — every data layer falls back to the bundled catalog in `src/lib/catalog.ts`.
+
+## Scripts
+
+- `npm run dev` — dev server
+- `npm run build` — production build (Cloudflare via Nitro)
+- `npm run lint` / `npm test` — ESLint / Vitest
+- `npm run db:generate|db:migrate|db:deploy|db:seed|db:studio` — Prisma workflow
+
+## Docs
+
+- `DATABASE_SETUP.md` — Neon connection setup
+- `PRISMA_SETUP.md` — ORM configuration
+- `API_DOCUMENTATION.md` — all REST endpoints
+- `DATABASE_SCHEMA.md` — entity map
+- `SECURITY.md` — auth, payments, hardening
+- `FEATURE_STATUS.md` — what's tested vs pending credentials

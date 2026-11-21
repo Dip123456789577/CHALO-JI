@@ -10,33 +10,603 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as AccountOrdersRouteImport } from './routes/account.orders'
+import { Route as ApiAddressesRouteImport } from './routes/api/addresses'
+import { Route as ApiCartRouteImport } from './routes/api/cart'
+import { Route as ApiCategoriesRouteImport } from './routes/api/categories'
+import { Route as ApiCollectionsRouteImport } from './routes/api/collections'
+import { Route as ApiOrdersRouteImport } from './routes/api/orders'
+import { Route as ApiProductsRouteImport } from './routes/api/products'
+import { Route as ApiProfileRouteImport } from './routes/api/profile'
+import { Route as ApiShipmentsRouteImport } from './routes/api/shipments'
+import { Route as ApiWishlistRouteImport } from './routes/api/wishlist'
+import { Route as CollectionsSlugRouteImport } from './routes/collections.$slug'
+import { Route as OrderOrderIdRouteImport } from './routes/order.$orderId'
+import { Route as PagesSlugRouteImport } from './routes/pages.$slug'
+import { Route as ProductHandleRouteImport } from './routes/product.$handle'
+import { Route as ApiAddressesIdRouteImport } from './routes/api/addresses.$id'
+import { Route as ApiAdminCustomersRouteImport } from './routes/api/admin/customers'
+import { Route as ApiAdminDashboardRouteImport } from './routes/api/admin/dashboard'
+import { Route as ApiAdminInventoryRouteImport } from './routes/api/admin/inventory'
+import { Route as ApiAdminOrdersRouteImport } from './routes/api/admin/orders'
+import { Route as ApiAuthForgotPasswordRouteImport } from './routes/api/auth/forgot-password'
+import { Route as ApiAuthLoginRouteImport } from './routes/api/auth/login'
+import { Route as ApiAuthLogoutRouteImport } from './routes/api/auth/logout'
+import { Route as ApiAuthMeRouteImport } from './routes/api/auth/me'
+import { Route as ApiAuthRegisterRouteImport } from './routes/api/auth/register'
+import { Route as ApiAuthResetPasswordRouteImport } from './routes/api/auth/reset-password'
+import { Route as ApiAuthVerifyEmailRouteImport } from './routes/api/auth/verify-email'
+import { Route as ApiCartItemsRouteImport } from './routes/api/cart/items'
+import { Route as ApiCategoriesIdRouteImport } from './routes/api/categories.$id'
+import { Route as ApiCollectionsSlugRouteImport } from './routes/api/collections.$slug'
+import { Route as ApiOrdersIdRouteImport } from './routes/api/orders.$id'
+import { Route as ApiProductsHandleRouteImport } from './routes/api/products.$handle'
+import { Route as ApiWishlistIdRouteImport } from './routes/api/wishlist.$id'
+import { Route as ApiCartItemsIdRouteImport } from './routes/api/cart/items.$id'
+import { Route as ApiPaymentsRazorpayOrderRouteImport } from './routes/api/payments/razorpay/order'
+import { Route as ApiPaymentsRazorpayVerifyRouteImport } from './routes/api/payments/razorpay/verify'
+import { Route as ApiPaymentsRazorpayWebhookRouteImport } from './routes/api/payments/razorpay/webhook'
+import { Route as ApiProductsProductIdReviewsRouteImport } from './routes/api/products.$productId.reviews'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountOrdersRoute = AccountOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AccountRoute,
+} as any)
+const ApiAddressesRoute = ApiAddressesRouteImport.update({
+  id: '/api/addresses',
+  path: '/api/addresses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCartRoute = ApiCartRouteImport.update({
+  id: '/api/cart',
+  path: '/api/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCategoriesRoute = ApiCategoriesRouteImport.update({
+  id: '/api/categories',
+  path: '/api/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCollectionsRoute = ApiCollectionsRouteImport.update({
+  id: '/api/collections',
+  path: '/api/collections',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOrdersRoute = ApiOrdersRouteImport.update({
+  id: '/api/orders',
+  path: '/api/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProductsRoute = ApiProductsRouteImport.update({
+  id: '/api/products',
+  path: '/api/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProfileRoute = ApiProfileRouteImport.update({
+  id: '/api/profile',
+  path: '/api/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiShipmentsRoute = ApiShipmentsRouteImport.update({
+  id: '/api/shipments',
+  path: '/api/shipments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWishlistRoute = ApiWishlistRouteImport.update({
+  id: '/api/wishlist',
+  path: '/api/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsSlugRoute = CollectionsSlugRouteImport.update({
+  id: '/collections/$slug',
+  path: '/collections/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderOrderIdRoute = OrderOrderIdRouteImport.update({
+  id: '/order/$orderId',
+  path: '/order/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesSlugRoute = PagesSlugRouteImport.update({
+  id: '/pages/$slug',
+  path: '/pages/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductHandleRoute = ProductHandleRouteImport.update({
+  id: '/product/$handle',
+  path: '/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAddressesIdRoute = ApiAddressesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiAddressesRoute,
+} as any)
+const ApiAdminCustomersRoute = ApiAdminCustomersRouteImport.update({
+  id: '/api/admin/customers',
+  path: '/api/admin/customers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminDashboardRoute = ApiAdminDashboardRouteImport.update({
+  id: '/api/admin/dashboard',
+  path: '/api/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminInventoryRoute = ApiAdminInventoryRouteImport.update({
+  id: '/api/admin/inventory',
+  path: '/api/admin/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminOrdersRoute = ApiAdminOrdersRouteImport.update({
+  id: '/api/admin/orders',
+  path: '/api/admin/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthForgotPasswordRoute = ApiAuthForgotPasswordRouteImport.update({
+  id: '/api/auth/forgot-password',
+  path: '/api/auth/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthLoginRoute = ApiAuthLoginRouteImport.update({
+  id: '/api/auth/login',
+  path: '/api/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthLogoutRoute = ApiAuthLogoutRouteImport.update({
+  id: '/api/auth/logout',
+  path: '/api/auth/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthMeRoute = ApiAuthMeRouteImport.update({
+  id: '/api/auth/me',
+  path: '/api/auth/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthRegisterRoute = ApiAuthRegisterRouteImport.update({
+  id: '/api/auth/register',
+  path: '/api/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthResetPasswordRoute = ApiAuthResetPasswordRouteImport.update({
+  id: '/api/auth/reset-password',
+  path: '/api/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthVerifyEmailRoute = ApiAuthVerifyEmailRouteImport.update({
+  id: '/api/auth/verify-email',
+  path: '/api/auth/verify-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCartItemsRoute = ApiCartItemsRouteImport.update({
+  id: '/items',
+  path: '/items',
+  getParentRoute: () => ApiCartRoute,
+} as any)
+const ApiCategoriesIdRoute = ApiCategoriesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiCategoriesRoute,
+} as any)
+const ApiCollectionsSlugRoute = ApiCollectionsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ApiCollectionsRoute,
+} as any)
+const ApiOrdersIdRoute = ApiOrdersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiOrdersRoute,
+} as any)
+const ApiProductsHandleRoute = ApiProductsHandleRouteImport.update({
+  id: '/$handle',
+  path: '/$handle',
+  getParentRoute: () => ApiProductsRoute,
+} as any)
+const ApiWishlistIdRoute = ApiWishlistIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiWishlistRoute,
+} as any)
+const ApiCartItemsIdRoute = ApiCartItemsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiCartItemsRoute,
+} as any)
+const ApiPaymentsRazorpayOrderRoute =
+  ApiPaymentsRazorpayOrderRouteImport.update({
+    id: '/api/payments/razorpay/order',
+    path: '/api/payments/razorpay/order',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPaymentsRazorpayVerifyRoute =
+  ApiPaymentsRazorpayVerifyRouteImport.update({
+    id: '/api/payments/razorpay/verify',
+    path: '/api/payments/razorpay/verify',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPaymentsRazorpayWebhookRoute =
+  ApiPaymentsRazorpayWebhookRouteImport.update({
+    id: '/api/payments/razorpay/webhook',
+    path: '/api/payments/razorpay/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiProductsProductIdReviewsRoute =
+  ApiProductsProductIdReviewsRouteImport.update({
+    id: '/$productId/reviews',
+    path: '/$productId/reviews',
+    getParentRoute: () => ApiProductsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRouteWithChildren
+  '/admin': typeof AdminRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/search': typeof SearchRoute
+  '/shop': typeof ShopRoute
+  '/wishlist': typeof WishlistRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/api/addresses': typeof ApiAddressesRouteWithChildren
+  '/api/cart': typeof ApiCartRouteWithChildren
+  '/api/categories': typeof ApiCategoriesRouteWithChildren
+  '/api/collections': typeof ApiCollectionsRouteWithChildren
+  '/api/orders': typeof ApiOrdersRouteWithChildren
+  '/api/products': typeof ApiProductsRouteWithChildren
+  '/api/profile': typeof ApiProfileRoute
+  '/api/shipments': typeof ApiShipmentsRoute
+  '/api/wishlist': typeof ApiWishlistRouteWithChildren
+  '/collections/$slug': typeof CollectionsSlugRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
+  '/pages/$slug': typeof PagesSlugRoute
+  '/product/$handle': typeof ProductHandleRoute
+  '/api/addresses/$id': typeof ApiAddressesIdRoute
+  '/api/admin/customers': typeof ApiAdminCustomersRoute
+  '/api/admin/dashboard': typeof ApiAdminDashboardRoute
+  '/api/admin/inventory': typeof ApiAdminInventoryRoute
+  '/api/admin/orders': typeof ApiAdminOrdersRoute
+  '/api/auth/forgot-password': typeof ApiAuthForgotPasswordRoute
+  '/api/auth/login': typeof ApiAuthLoginRoute
+  '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/api/auth/me': typeof ApiAuthMeRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/auth/reset-password': typeof ApiAuthResetPasswordRoute
+  '/api/auth/verify-email': typeof ApiAuthVerifyEmailRoute
+  '/api/cart/items': typeof ApiCartItemsRouteWithChildren
+  '/api/categories/$id': typeof ApiCategoriesIdRoute
+  '/api/collections/$slug': typeof ApiCollectionsSlugRoute
+  '/api/orders/$id': typeof ApiOrdersIdRoute
+  '/api/products/$handle': typeof ApiProductsHandleRoute
+  '/api/wishlist/$id': typeof ApiWishlistIdRoute
+  '/api/cart/items/$id': typeof ApiCartItemsIdRoute
+  '/api/payments/razorpay/order': typeof ApiPaymentsRazorpayOrderRoute
+  '/api/payments/razorpay/verify': typeof ApiPaymentsRazorpayVerifyRoute
+  '/api/payments/razorpay/webhook': typeof ApiPaymentsRazorpayWebhookRoute
+  '/api/products/$productId/reviews': typeof ApiProductsProductIdReviewsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRouteWithChildren
+  '/admin': typeof AdminRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/search': typeof SearchRoute
+  '/shop': typeof ShopRoute
+  '/wishlist': typeof WishlistRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/api/addresses': typeof ApiAddressesRouteWithChildren
+  '/api/cart': typeof ApiCartRouteWithChildren
+  '/api/categories': typeof ApiCategoriesRouteWithChildren
+  '/api/collections': typeof ApiCollectionsRouteWithChildren
+  '/api/orders': typeof ApiOrdersRouteWithChildren
+  '/api/products': typeof ApiProductsRouteWithChildren
+  '/api/profile': typeof ApiProfileRoute
+  '/api/shipments': typeof ApiShipmentsRoute
+  '/api/wishlist': typeof ApiWishlistRouteWithChildren
+  '/collections/$slug': typeof CollectionsSlugRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
+  '/pages/$slug': typeof PagesSlugRoute
+  '/product/$handle': typeof ProductHandleRoute
+  '/api/addresses/$id': typeof ApiAddressesIdRoute
+  '/api/admin/customers': typeof ApiAdminCustomersRoute
+  '/api/admin/dashboard': typeof ApiAdminDashboardRoute
+  '/api/admin/inventory': typeof ApiAdminInventoryRoute
+  '/api/admin/orders': typeof ApiAdminOrdersRoute
+  '/api/auth/forgot-password': typeof ApiAuthForgotPasswordRoute
+  '/api/auth/login': typeof ApiAuthLoginRoute
+  '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/api/auth/me': typeof ApiAuthMeRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/auth/reset-password': typeof ApiAuthResetPasswordRoute
+  '/api/auth/verify-email': typeof ApiAuthVerifyEmailRoute
+  '/api/cart/items': typeof ApiCartItemsRouteWithChildren
+  '/api/categories/$id': typeof ApiCategoriesIdRoute
+  '/api/collections/$slug': typeof ApiCollectionsSlugRoute
+  '/api/orders/$id': typeof ApiOrdersIdRoute
+  '/api/products/$handle': typeof ApiProductsHandleRoute
+  '/api/wishlist/$id': typeof ApiWishlistIdRoute
+  '/api/cart/items/$id': typeof ApiCartItemsIdRoute
+  '/api/payments/razorpay/order': typeof ApiPaymentsRazorpayOrderRoute
+  '/api/payments/razorpay/verify': typeof ApiPaymentsRazorpayVerifyRoute
+  '/api/payments/razorpay/webhook': typeof ApiPaymentsRazorpayWebhookRoute
+  '/api/products/$productId/reviews': typeof ApiProductsProductIdReviewsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRouteWithChildren
+  '/admin': typeof AdminRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/search': typeof SearchRoute
+  '/shop': typeof ShopRoute
+  '/wishlist': typeof WishlistRoute
+  '/account/orders': typeof AccountOrdersRoute
+  '/api/addresses': typeof ApiAddressesRouteWithChildren
+  '/api/cart': typeof ApiCartRouteWithChildren
+  '/api/categories': typeof ApiCategoriesRouteWithChildren
+  '/api/collections': typeof ApiCollectionsRouteWithChildren
+  '/api/orders': typeof ApiOrdersRouteWithChildren
+  '/api/products': typeof ApiProductsRouteWithChildren
+  '/api/profile': typeof ApiProfileRoute
+  '/api/shipments': typeof ApiShipmentsRoute
+  '/api/wishlist': typeof ApiWishlistRouteWithChildren
+  '/collections/$slug': typeof CollectionsSlugRoute
+  '/order/$orderId': typeof OrderOrderIdRoute
+  '/pages/$slug': typeof PagesSlugRoute
+  '/product/$handle': typeof ProductHandleRoute
+  '/api/addresses/$id': typeof ApiAddressesIdRoute
+  '/api/admin/customers': typeof ApiAdminCustomersRoute
+  '/api/admin/dashboard': typeof ApiAdminDashboardRoute
+  '/api/admin/inventory': typeof ApiAdminInventoryRoute
+  '/api/admin/orders': typeof ApiAdminOrdersRoute
+  '/api/auth/forgot-password': typeof ApiAuthForgotPasswordRoute
+  '/api/auth/login': typeof ApiAuthLoginRoute
+  '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/api/auth/me': typeof ApiAuthMeRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/auth/reset-password': typeof ApiAuthResetPasswordRoute
+  '/api/auth/verify-email': typeof ApiAuthVerifyEmailRoute
+  '/api/cart/items': typeof ApiCartItemsRouteWithChildren
+  '/api/categories/$id': typeof ApiCategoriesIdRoute
+  '/api/collections/$slug': typeof ApiCollectionsSlugRoute
+  '/api/orders/$id': typeof ApiOrdersIdRoute
+  '/api/products/$handle': typeof ApiProductsHandleRoute
+  '/api/wishlist/$id': typeof ApiWishlistIdRoute
+  '/api/cart/items/$id': typeof ApiCartItemsIdRoute
+  '/api/payments/razorpay/order': typeof ApiPaymentsRazorpayOrderRoute
+  '/api/payments/razorpay/verify': typeof ApiPaymentsRazorpayVerifyRoute
+  '/api/payments/razorpay/webhook': typeof ApiPaymentsRazorpayWebhookRoute
+  '/api/products/$productId/reviews': typeof ApiProductsProductIdReviewsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/cart'
+    | '/checkout'
+    | '/search'
+    | '/shop'
+    | '/wishlist'
+    | '/account/orders'
+    | '/api/addresses'
+    | '/api/cart'
+    | '/api/categories'
+    | '/api/collections'
+    | '/api/orders'
+    | '/api/products'
+    | '/api/profile'
+    | '/api/shipments'
+    | '/api/wishlist'
+    | '/collections/$slug'
+    | '/order/$orderId'
+    | '/pages/$slug'
+    | '/product/$handle'
+    | '/api/addresses/$id'
+    | '/api/admin/customers'
+    | '/api/admin/dashboard'
+    | '/api/admin/inventory'
+    | '/api/admin/orders'
+    | '/api/auth/forgot-password'
+    | '/api/auth/login'
+    | '/api/auth/logout'
+    | '/api/auth/me'
+    | '/api/auth/register'
+    | '/api/auth/reset-password'
+    | '/api/auth/verify-email'
+    | '/api/cart/items'
+    | '/api/categories/$id'
+    | '/api/collections/$slug'
+    | '/api/orders/$id'
+    | '/api/products/$handle'
+    | '/api/wishlist/$id'
+    | '/api/cart/items/$id'
+    | '/api/payments/razorpay/order'
+    | '/api/payments/razorpay/verify'
+    | '/api/payments/razorpay/webhook'
+    | '/api/products/$productId/reviews'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/cart'
+    | '/checkout'
+    | '/search'
+    | '/shop'
+    | '/wishlist'
+    | '/account/orders'
+    | '/api/addresses'
+    | '/api/cart'
+    | '/api/categories'
+    | '/api/collections'
+    | '/api/orders'
+    | '/api/products'
+    | '/api/profile'
+    | '/api/shipments'
+    | '/api/wishlist'
+    | '/collections/$slug'
+    | '/order/$orderId'
+    | '/pages/$slug'
+    | '/product/$handle'
+    | '/api/addresses/$id'
+    | '/api/admin/customers'
+    | '/api/admin/dashboard'
+    | '/api/admin/inventory'
+    | '/api/admin/orders'
+    | '/api/auth/forgot-password'
+    | '/api/auth/login'
+    | '/api/auth/logout'
+    | '/api/auth/me'
+    | '/api/auth/register'
+    | '/api/auth/reset-password'
+    | '/api/auth/verify-email'
+    | '/api/cart/items'
+    | '/api/categories/$id'
+    | '/api/collections/$slug'
+    | '/api/orders/$id'
+    | '/api/products/$handle'
+    | '/api/wishlist/$id'
+    | '/api/cart/items/$id'
+    | '/api/payments/razorpay/order'
+    | '/api/payments/razorpay/verify'
+    | '/api/payments/razorpay/webhook'
+    | '/api/products/$productId/reviews'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/admin'
+    | '/cart'
+    | '/checkout'
+    | '/search'
+    | '/shop'
+    | '/wishlist'
+    | '/account/orders'
+    | '/api/addresses'
+    | '/api/cart'
+    | '/api/categories'
+    | '/api/collections'
+    | '/api/orders'
+    | '/api/products'
+    | '/api/profile'
+    | '/api/shipments'
+    | '/api/wishlist'
+    | '/collections/$slug'
+    | '/order/$orderId'
+    | '/pages/$slug'
+    | '/product/$handle'
+    | '/api/addresses/$id'
+    | '/api/admin/customers'
+    | '/api/admin/dashboard'
+    | '/api/admin/inventory'
+    | '/api/admin/orders'
+    | '/api/auth/forgot-password'
+    | '/api/auth/login'
+    | '/api/auth/logout'
+    | '/api/auth/me'
+    | '/api/auth/register'
+    | '/api/auth/reset-password'
+    | '/api/auth/verify-email'
+    | '/api/cart/items'
+    | '/api/categories/$id'
+    | '/api/collections/$slug'
+    | '/api/orders/$id'
+    | '/api/products/$handle'
+    | '/api/wishlist/$id'
+    | '/api/cart/items/$id'
+    | '/api/payments/razorpay/order'
+    | '/api/payments/razorpay/verify'
+    | '/api/payments/razorpay/webhook'
+    | '/api/products/$productId/reviews'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRouteWithChildren
+  AdminRoute: typeof AdminRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
+  SearchRoute: typeof SearchRoute
+  ShopRoute: typeof ShopRoute
+  WishlistRoute: typeof WishlistRoute
+  ApiAddressesRoute: typeof ApiAddressesRouteWithChildren
+  ApiCartRoute: typeof ApiCartRouteWithChildren
+  ApiCategoriesRoute: typeof ApiCategoriesRouteWithChildren
+  ApiCollectionsRoute: typeof ApiCollectionsRouteWithChildren
+  ApiOrdersRoute: typeof ApiOrdersRouteWithChildren
+  ApiProductsRoute: typeof ApiProductsRouteWithChildren
+  ApiProfileRoute: typeof ApiProfileRoute
+  ApiShipmentsRoute: typeof ApiShipmentsRoute
+  ApiWishlistRoute: typeof ApiWishlistRouteWithChildren
+  CollectionsSlugRoute: typeof CollectionsSlugRoute
+  OrderOrderIdRoute: typeof OrderOrderIdRoute
+  PagesSlugRoute: typeof PagesSlugRoute
+  ProductHandleRoute: typeof ProductHandleRoute
+  ApiAdminCustomersRoute: typeof ApiAdminCustomersRoute
+  ApiAdminDashboardRoute: typeof ApiAdminDashboardRoute
+  ApiAdminInventoryRoute: typeof ApiAdminInventoryRoute
+  ApiAdminOrdersRoute: typeof ApiAdminOrdersRoute
+  ApiAuthForgotPasswordRoute: typeof ApiAuthForgotPasswordRoute
+  ApiAuthLoginRoute: typeof ApiAuthLoginRoute
+  ApiAuthLogoutRoute: typeof ApiAuthLogoutRoute
+  ApiAuthMeRoute: typeof ApiAuthMeRoute
+  ApiAuthRegisterRoute: typeof ApiAuthRegisterRoute
+  ApiAuthResetPasswordRoute: typeof ApiAuthResetPasswordRoute
+  ApiAuthVerifyEmailRoute: typeof ApiAuthVerifyEmailRoute
+  ApiPaymentsRazorpayOrderRoute: typeof ApiPaymentsRazorpayOrderRoute
+  ApiPaymentsRazorpayVerifyRoute: typeof ApiPaymentsRazorpayVerifyRoute
+  ApiPaymentsRazorpayWebhookRoute: typeof ApiPaymentsRazorpayWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +618,461 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/orders': {
+      id: '/account/orders'
+      path: '/orders'
+      fullPath: '/account/orders'
+      preLoaderRoute: typeof AccountOrdersRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/api/addresses': {
+      id: '/api/addresses'
+      path: '/api/addresses'
+      fullPath: '/api/addresses'
+      preLoaderRoute: typeof ApiAddressesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cart': {
+      id: '/api/cart'
+      path: '/api/cart'
+      fullPath: '/api/cart'
+      preLoaderRoute: typeof ApiCartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/categories': {
+      id: '/api/categories'
+      path: '/api/categories'
+      fullPath: '/api/categories'
+      preLoaderRoute: typeof ApiCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/collections': {
+      id: '/api/collections'
+      path: '/api/collections'
+      fullPath: '/api/collections'
+      preLoaderRoute: typeof ApiCollectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/orders': {
+      id: '/api/orders'
+      path: '/api/orders'
+      fullPath: '/api/orders'
+      preLoaderRoute: typeof ApiOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/products': {
+      id: '/api/products'
+      path: '/api/products'
+      fullPath: '/api/products'
+      preLoaderRoute: typeof ApiProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/profile': {
+      id: '/api/profile'
+      path: '/api/profile'
+      fullPath: '/api/profile'
+      preLoaderRoute: typeof ApiProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/shipments': {
+      id: '/api/shipments'
+      path: '/api/shipments'
+      fullPath: '/api/shipments'
+      preLoaderRoute: typeof ApiShipmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/wishlist': {
+      id: '/api/wishlist'
+      path: '/api/wishlist'
+      fullPath: '/api/wishlist'
+      preLoaderRoute: typeof ApiWishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/$slug': {
+      id: '/collections/$slug'
+      path: '/collections/$slug'
+      fullPath: '/collections/$slug'
+      preLoaderRoute: typeof CollectionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order/$orderId': {
+      id: '/order/$orderId'
+      path: '/order/$orderId'
+      fullPath: '/order/$orderId'
+      preLoaderRoute: typeof OrderOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/$slug': {
+      id: '/pages/$slug'
+      path: '/pages/$slug'
+      fullPath: '/pages/$slug'
+      preLoaderRoute: typeof PagesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$handle': {
+      id: '/product/$handle'
+      path: '/product/$handle'
+      fullPath: '/product/$handle'
+      preLoaderRoute: typeof ProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/addresses/$id': {
+      id: '/api/addresses/$id'
+      path: '/$id'
+      fullPath: '/api/addresses/$id'
+      preLoaderRoute: typeof ApiAddressesIdRouteImport
+      parentRoute: typeof ApiAddressesRoute
+    }
+    '/api/admin/customers': {
+      id: '/api/admin/customers'
+      path: '/api/admin/customers'
+      fullPath: '/api/admin/customers'
+      preLoaderRoute: typeof ApiAdminCustomersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/dashboard': {
+      id: '/api/admin/dashboard'
+      path: '/api/admin/dashboard'
+      fullPath: '/api/admin/dashboard'
+      preLoaderRoute: typeof ApiAdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/inventory': {
+      id: '/api/admin/inventory'
+      path: '/api/admin/inventory'
+      fullPath: '/api/admin/inventory'
+      preLoaderRoute: typeof ApiAdminInventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/orders': {
+      id: '/api/admin/orders'
+      path: '/api/admin/orders'
+      fullPath: '/api/admin/orders'
+      preLoaderRoute: typeof ApiAdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/forgot-password': {
+      id: '/api/auth/forgot-password'
+      path: '/api/auth/forgot-password'
+      fullPath: '/api/auth/forgot-password'
+      preLoaderRoute: typeof ApiAuthForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/login': {
+      id: '/api/auth/login'
+      path: '/api/auth/login'
+      fullPath: '/api/auth/login'
+      preLoaderRoute: typeof ApiAuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/logout': {
+      id: '/api/auth/logout'
+      path: '/api/auth/logout'
+      fullPath: '/api/auth/logout'
+      preLoaderRoute: typeof ApiAuthLogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/me': {
+      id: '/api/auth/me'
+      path: '/api/auth/me'
+      fullPath: '/api/auth/me'
+      preLoaderRoute: typeof ApiAuthMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/register': {
+      id: '/api/auth/register'
+      path: '/api/auth/register'
+      fullPath: '/api/auth/register'
+      preLoaderRoute: typeof ApiAuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/reset-password': {
+      id: '/api/auth/reset-password'
+      path: '/api/auth/reset-password'
+      fullPath: '/api/auth/reset-password'
+      preLoaderRoute: typeof ApiAuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/verify-email': {
+      id: '/api/auth/verify-email'
+      path: '/api/auth/verify-email'
+      fullPath: '/api/auth/verify-email'
+      preLoaderRoute: typeof ApiAuthVerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cart/items': {
+      id: '/api/cart/items'
+      path: '/items'
+      fullPath: '/api/cart/items'
+      preLoaderRoute: typeof ApiCartItemsRouteImport
+      parentRoute: typeof ApiCartRoute
+    }
+    '/api/categories/$id': {
+      id: '/api/categories/$id'
+      path: '/$id'
+      fullPath: '/api/categories/$id'
+      preLoaderRoute: typeof ApiCategoriesIdRouteImport
+      parentRoute: typeof ApiCategoriesRoute
+    }
+    '/api/collections/$slug': {
+      id: '/api/collections/$slug'
+      path: '/$slug'
+      fullPath: '/api/collections/$slug'
+      preLoaderRoute: typeof ApiCollectionsSlugRouteImport
+      parentRoute: typeof ApiCollectionsRoute
+    }
+    '/api/orders/$id': {
+      id: '/api/orders/$id'
+      path: '/$id'
+      fullPath: '/api/orders/$id'
+      preLoaderRoute: typeof ApiOrdersIdRouteImport
+      parentRoute: typeof ApiOrdersRoute
+    }
+    '/api/products/$handle': {
+      id: '/api/products/$handle'
+      path: '/$handle'
+      fullPath: '/api/products/$handle'
+      preLoaderRoute: typeof ApiProductsHandleRouteImport
+      parentRoute: typeof ApiProductsRoute
+    }
+    '/api/wishlist/$id': {
+      id: '/api/wishlist/$id'
+      path: '/$id'
+      fullPath: '/api/wishlist/$id'
+      preLoaderRoute: typeof ApiWishlistIdRouteImport
+      parentRoute: typeof ApiWishlistRoute
+    }
+    '/api/cart/items/$id': {
+      id: '/api/cart/items/$id'
+      path: '/$id'
+      fullPath: '/api/cart/items/$id'
+      preLoaderRoute: typeof ApiCartItemsIdRouteImport
+      parentRoute: typeof ApiCartItemsRoute
+    }
+    '/api/payments/razorpay/order': {
+      id: '/api/payments/razorpay/order'
+      path: '/api/payments/razorpay/order'
+      fullPath: '/api/payments/razorpay/order'
+      preLoaderRoute: typeof ApiPaymentsRazorpayOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/payments/razorpay/verify': {
+      id: '/api/payments/razorpay/verify'
+      path: '/api/payments/razorpay/verify'
+      fullPath: '/api/payments/razorpay/verify'
+      preLoaderRoute: typeof ApiPaymentsRazorpayVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/payments/razorpay/webhook': {
+      id: '/api/payments/razorpay/webhook'
+      path: '/api/payments/razorpay/webhook'
+      fullPath: '/api/payments/razorpay/webhook'
+      preLoaderRoute: typeof ApiPaymentsRazorpayWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/products/$productId/reviews': {
+      id: '/api/products/$productId/reviews'
+      path: '/$productId/reviews'
+      fullPath: '/api/products/$productId/reviews'
+      preLoaderRoute: typeof ApiProductsProductIdReviewsRouteImport
+      parentRoute: typeof ApiProductsRoute
+    }
   }
 }
 
+interface AccountRouteChildren {
+  AccountOrdersRoute: typeof AccountOrdersRoute
+}
+
+const AccountRouteChildren: AccountRouteChildren = {
+  AccountOrdersRoute: AccountOrdersRoute,
+}
+
+const AccountRouteWithChildren =
+  AccountRoute._addFileChildren(AccountRouteChildren)
+
+interface ApiAddressesRouteChildren {
+  ApiAddressesIdRoute: typeof ApiAddressesIdRoute
+}
+
+const ApiAddressesRouteChildren: ApiAddressesRouteChildren = {
+  ApiAddressesIdRoute: ApiAddressesIdRoute,
+}
+
+const ApiAddressesRouteWithChildren = ApiAddressesRoute._addFileChildren(
+  ApiAddressesRouteChildren,
+)
+
+interface ApiCartItemsRouteChildren {
+  ApiCartItemsIdRoute: typeof ApiCartItemsIdRoute
+}
+
+const ApiCartItemsRouteChildren: ApiCartItemsRouteChildren = {
+  ApiCartItemsIdRoute: ApiCartItemsIdRoute,
+}
+
+const ApiCartItemsRouteWithChildren = ApiCartItemsRoute._addFileChildren(
+  ApiCartItemsRouteChildren,
+)
+
+interface ApiCartRouteChildren {
+  ApiCartItemsRoute: typeof ApiCartItemsRouteWithChildren
+}
+
+const ApiCartRouteChildren: ApiCartRouteChildren = {
+  ApiCartItemsRoute: ApiCartItemsRouteWithChildren,
+}
+
+const ApiCartRouteWithChildren =
+  ApiCartRoute._addFileChildren(ApiCartRouteChildren)
+
+interface ApiCategoriesRouteChildren {
+  ApiCategoriesIdRoute: typeof ApiCategoriesIdRoute
+}
+
+const ApiCategoriesRouteChildren: ApiCategoriesRouteChildren = {
+  ApiCategoriesIdRoute: ApiCategoriesIdRoute,
+}
+
+const ApiCategoriesRouteWithChildren = ApiCategoriesRoute._addFileChildren(
+  ApiCategoriesRouteChildren,
+)
+
+interface ApiCollectionsRouteChildren {
+  ApiCollectionsSlugRoute: typeof ApiCollectionsSlugRoute
+}
+
+const ApiCollectionsRouteChildren: ApiCollectionsRouteChildren = {
+  ApiCollectionsSlugRoute: ApiCollectionsSlugRoute,
+}
+
+const ApiCollectionsRouteWithChildren = ApiCollectionsRoute._addFileChildren(
+  ApiCollectionsRouteChildren,
+)
+
+interface ApiOrdersRouteChildren {
+  ApiOrdersIdRoute: typeof ApiOrdersIdRoute
+}
+
+const ApiOrdersRouteChildren: ApiOrdersRouteChildren = {
+  ApiOrdersIdRoute: ApiOrdersIdRoute,
+}
+
+const ApiOrdersRouteWithChildren = ApiOrdersRoute._addFileChildren(
+  ApiOrdersRouteChildren,
+)
+
+interface ApiProductsRouteChildren {
+  ApiProductsHandleRoute: typeof ApiProductsHandleRoute
+  ApiProductsProductIdReviewsRoute: typeof ApiProductsProductIdReviewsRoute
+}
+
+const ApiProductsRouteChildren: ApiProductsRouteChildren = {
+  ApiProductsHandleRoute: ApiProductsHandleRoute,
+  ApiProductsProductIdReviewsRoute: ApiProductsProductIdReviewsRoute,
+}
+
+const ApiProductsRouteWithChildren = ApiProductsRoute._addFileChildren(
+  ApiProductsRouteChildren,
+)
+
+interface ApiWishlistRouteChildren {
+  ApiWishlistIdRoute: typeof ApiWishlistIdRoute
+}
+
+const ApiWishlistRouteChildren: ApiWishlistRouteChildren = {
+  ApiWishlistIdRoute: ApiWishlistIdRoute,
+}
+
+const ApiWishlistRouteWithChildren = ApiWishlistRoute._addFileChildren(
+  ApiWishlistRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRouteWithChildren,
+  AdminRoute: AdminRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
+  SearchRoute: SearchRoute,
+  ShopRoute: ShopRoute,
+  WishlistRoute: WishlistRoute,
+  ApiAddressesRoute: ApiAddressesRouteWithChildren,
+  ApiCartRoute: ApiCartRouteWithChildren,
+  ApiCategoriesRoute: ApiCategoriesRouteWithChildren,
+  ApiCollectionsRoute: ApiCollectionsRouteWithChildren,
+  ApiOrdersRoute: ApiOrdersRouteWithChildren,
+  ApiProductsRoute: ApiProductsRouteWithChildren,
+  ApiProfileRoute: ApiProfileRoute,
+  ApiShipmentsRoute: ApiShipmentsRoute,
+  ApiWishlistRoute: ApiWishlistRouteWithChildren,
+  CollectionsSlugRoute: CollectionsSlugRoute,
+  OrderOrderIdRoute: OrderOrderIdRoute,
+  PagesSlugRoute: PagesSlugRoute,
+  ProductHandleRoute: ProductHandleRoute,
+  ApiAdminCustomersRoute: ApiAdminCustomersRoute,
+  ApiAdminDashboardRoute: ApiAdminDashboardRoute,
+  ApiAdminInventoryRoute: ApiAdminInventoryRoute,
+  ApiAdminOrdersRoute: ApiAdminOrdersRoute,
+  ApiAuthForgotPasswordRoute: ApiAuthForgotPasswordRoute,
+  ApiAuthLoginRoute: ApiAuthLoginRoute,
+  ApiAuthLogoutRoute: ApiAuthLogoutRoute,
+  ApiAuthMeRoute: ApiAuthMeRoute,
+  ApiAuthRegisterRoute: ApiAuthRegisterRoute,
+  ApiAuthResetPasswordRoute: ApiAuthResetPasswordRoute,
+  ApiAuthVerifyEmailRoute: ApiAuthVerifyEmailRoute,
+  ApiPaymentsRazorpayOrderRoute: ApiPaymentsRazorpayOrderRoute,
+  ApiPaymentsRazorpayVerifyRoute: ApiPaymentsRazorpayVerifyRoute,
+  ApiPaymentsRazorpayWebhookRoute: ApiPaymentsRazorpayWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

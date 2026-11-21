@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
 
 import {
   addShopifyCartLine,
@@ -10,6 +10,12 @@ import {
   type ShopifyProduct,
   type ShopifyVariant,
 } from "@/lib/shopify-storefront";
+
+const noopStorage: StateStorage = {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+};
 
 export interface AurelleCartItem {
   lineId: string;
@@ -39,8 +45,13 @@ interface CartState {
   clearMessage: () => void;
 }
 
-function lineIdForVariant(productCart: Awaited<ReturnType<typeof createShopifyCart>>, variantId: string): string | null {
-  return productCart.lines.edges.find(({ node }) => node.merchandise.id === variantId)?.node.id ?? null;
+function lineIdForVariant(
+  productCart: Awaited<ReturnType<typeof createShopifyCart>>,
+  variantId: string,
+): string | null {
+  return (
+    productCart.lines.edges.find(({ node }) => node.merchandise.id === variantId)?.node.id ?? null
+  );
 }
 
 export const useCartStore = create<CartState>()(
@@ -87,7 +98,10 @@ export const useCartStore = create<CartState>()(
             message: null,
           });
         } catch (error) {
-          set({ message: error instanceof Error ? error.message : "Could not add this piece to your bag." });
+          set({
+            message:
+              error instanceof Error ? error.message : "Could not add this piece to your bag.",
+          });
         } finally {
           set({ isLoading: false });
         }
@@ -104,7 +118,9 @@ export const useCartStore = create<CartState>()(
         try {
           const cart = await updateShopifyCartLine(cartId, item.lineId, quantity);
           set({
-            items: get().items.map((entry) => entry.variantId === variantId ? { ...entry, quantity } : entry),
+            items: get().items.map((entry) =>
+              entry.variantId === variantId ? { ...entry, quantity } : entry,
+            ),
             checkoutUrl: cart.checkoutUrl,
           });
         } catch (error) {
@@ -121,9 +137,11 @@ export const useCartStore = create<CartState>()(
         try {
           const cart = await removeShopifyCartLine(cartId, item.lineId);
           const remaining = get().items.filter((entry) => entry.variantId !== variantId);
-          set(remaining.length
-            ? { items: remaining, checkoutUrl: cart.checkoutUrl }
-            : { items: [], cartId: null, checkoutUrl: null });
+          set(
+            remaining.length
+              ? { items: remaining, checkoutUrl: cart.checkoutUrl }
+              : { items: [], cartId: null, checkoutUrl: null },
+          );
         } catch (error) {
           set({ message: error instanceof Error ? error.message : "Could not remove this piece." });
         } finally {
@@ -144,16 +162,19 @@ export const useCartStore = create<CartState>()(
           // Preserve the locally saved bag during a temporary Storefront API outage.
         }
       },
-      toggleWishlist: (productId) => set((state) => ({
-        wishlist: state.wishlist.includes(productId)
-          ? state.wishlist.filter((id) => id !== productId)
-          : [...state.wishlist, productId],
-      })),
+      toggleWishlist: (productId) =>
+        set((state) => ({
+          wishlist: state.wishlist.includes(productId)
+            ? state.wishlist.filter((id) => id !== productId)
+            : [...state.wishlist, productId],
+        })),
       clearMessage: () => set({ message: null }),
     }),
     {
       name: "aurelle-shopify-cart",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() =>
+        typeof window === "undefined" ? noopStorage : localStorage,
+      ),
       skipHydration: true,
       partialize: (state) => ({
         items: state.items,

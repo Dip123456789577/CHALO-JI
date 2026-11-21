@@ -37,7 +37,10 @@ interface GraphQLResponse<T> {
   errors?: GraphQLError[];
 }
 
-export async function storefrontApiRequest<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
+export async function storefrontApiRequest<T>(
+  query: string,
+  variables: Record<string, unknown> = {},
+): Promise<T> {
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
     method: "POST",
     headers: {
@@ -86,11 +89,14 @@ const PRODUCT_FIELDS = `
 export async function fetchShopifyProducts(): Promise<ShopifyProduct[]> {
   const result = await storefrontApiRequest<{
     products: { edges: Array<{ node: ShopifyProduct }> };
-  }>(`query AurelleProducts($first: Int!) {
+  }>(
+    `query AurelleProducts($first: Int!) {
     products(first: $first, sortKey: BEST_SELLING) {
       edges { node { ${PRODUCT_FIELDS} } }
     }
-  }`, { first: 50 });
+  }`,
+    { first: 50 },
+  );
   return result.products.edges.map(({ node }) => node);
 }
 
@@ -143,67 +149,97 @@ export function formatCheckoutUrl(checkoutUrl: string): string {
 export async function createShopifyCart(lines: ShopifyCartLineInput[]): Promise<ShopifyCartResult> {
   const result = await storefrontApiRequest<{
     cartCreate: { cart: ShopifyCartResult | null; userErrors: Array<{ message: string }> };
-  }>(`mutation AurelleCartCreate($input: CartInput!) {
+  }>(
+    `mutation AurelleCartCreate($input: CartInput!) {
     cartCreate(input: $input) {
       cart { ${CART_SELECTION} }
       userErrors { message }
     }
-  }`, { input: { lines, buyerIdentity: { countryCode: "IN" } } });
+  }`,
+    { input: { lines, buyerIdentity: { countryCode: "IN" } } },
+  );
 
   const { cart, userErrors } = result.cartCreate;
   if (userErrors.length || !cart) {
-    throw new Error(userErrors.map((error) => error.message).join(" ") || "Could not create your bag.");
+    throw new Error(
+      userErrors.map((error) => error.message).join(" ") || "Could not create your bag.",
+    );
   }
   return { ...cart, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl) };
 }
 
-export async function addShopifyCartLine(cartId: string, line: ShopifyCartLineInput): Promise<ShopifyCartResult> {
+export async function addShopifyCartLine(
+  cartId: string,
+  line: ShopifyCartLineInput,
+): Promise<ShopifyCartResult> {
   const result = await storefrontApiRequest<{
     cartLinesAdd: { cart: ShopifyCartResult | null; userErrors: Array<{ message: string }> };
-  }>(`mutation AurelleCartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  }>(
+    `mutation AurelleCartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart { ${CART_SELECTION} }
       userErrors { message }
     }
-  }`, { cartId, lines: [line] });
+  }`,
+    { cartId, lines: [line] },
+  );
 
   const { cart, userErrors } = result.cartLinesAdd;
   if (userErrors.length || !cart) {
-    throw new Error(userErrors.map((error) => error.message).join(" ") || "Could not update your bag.");
+    throw new Error(
+      userErrors.map((error) => error.message).join(" ") || "Could not update your bag.",
+    );
   }
   return { ...cart, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl) };
 }
 
-export async function updateShopifyCartLine(cartId: string, lineId: string, quantity: number): Promise<ShopifyCartResult> {
+export async function updateShopifyCartLine(
+  cartId: string,
+  lineId: string,
+  quantity: number,
+): Promise<ShopifyCartResult> {
   const result = await storefrontApiRequest<{
     cartLinesUpdate: { cart: ShopifyCartResult | null; userErrors: Array<{ message: string }> };
-  }>(`mutation AurelleCartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  }>(
+    `mutation AurelleCartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart { ${CART_SELECTION} }
       userErrors { message }
     }
-  }`, { cartId, lines: [{ id: lineId, quantity }] });
+  }`,
+    { cartId, lines: [{ id: lineId, quantity }] },
+  );
 
   const { cart, userErrors } = result.cartLinesUpdate;
   if (userErrors.length || !cart) {
-    throw new Error(userErrors.map((error) => error.message).join(" ") || "Could not update your bag.");
+    throw new Error(
+      userErrors.map((error) => error.message).join(" ") || "Could not update your bag.",
+    );
   }
   return { ...cart, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl) };
 }
 
-export async function removeShopifyCartLine(cartId: string, lineId: string): Promise<ShopifyCartResult> {
+export async function removeShopifyCartLine(
+  cartId: string,
+  lineId: string,
+): Promise<ShopifyCartResult> {
   const result = await storefrontApiRequest<{
     cartLinesRemove: { cart: ShopifyCartResult | null; userErrors: Array<{ message: string }> };
-  }>(`mutation AurelleCartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+  }>(
+    `mutation AurelleCartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
       cart { ${CART_SELECTION} }
       userErrors { message }
     }
-  }`, { cartId, lineIds: [lineId] });
+  }`,
+    { cartId, lineIds: [lineId] },
+  );
 
   const { cart, userErrors } = result.cartLinesRemove;
   if (userErrors.length || !cart) {
-    throw new Error(userErrors.map((error) => error.message).join(" ") || "Could not remove this piece.");
+    throw new Error(
+      userErrors.map((error) => error.message).join(" ") || "Could not remove this piece.",
+    );
   }
   return { ...cart, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl) };
 }
@@ -213,5 +249,7 @@ export async function readShopifyCart(cartId: string): Promise<ShopifyCartResult
     `query AurelleCart($id: ID!) { cart(id: $id) { ${CART_SELECTION} } }`,
     { id: cartId },
   );
-  return result.cart ? { ...result.cart, checkoutUrl: formatCheckoutUrl(result.cart.checkoutUrl) } : null;
+  return result.cart
+    ? { ...result.cart, checkoutUrl: formatCheckoutUrl(result.cart.checkoutUrl) }
+    : null;
 }
